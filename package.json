@@ -1,0 +1,30 @@
+{
+  "name": "iotcswrapper",
+  "version": "1.0.0",
+  "description": "Anki Overdrive demo: IoTCS wrapper to send sniffed messages from Python script to Oracle IoTCS",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ccasares/iotcswrapper.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ccasares/iotcswrapper/issues"
+  },
+  "homepage": "https://github.com/ccasares/iotcswrapper#readme",
+  "dependencies": {
+    "async": "^2.0.1",
+    "block-queue": "0.0.2",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "is-reachable": "^1.3.0",
+    "lodash": "^4.16.1",
+    "npmlog": "^4.0.0",
+    "npmlog-ts": "0.0.1",
+    "ws": "^1.1.1"
+  }
+}
