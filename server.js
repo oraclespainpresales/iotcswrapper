@@ -27,7 +27,7 @@ const QUEUE   = "QUEUE";
 const DATA    = "DATA";
 const ALERT   = "ALERT";
 const ANKI    = "Anki Car";
-log.level ='verbose';
+log.level     ='verbose';
 log.timestamp = true;
 var mainStatus = "STARTING";
 // Misc END
@@ -45,7 +45,7 @@ var alerts = [
   { deviceUrn: 'urn:oracle:iot:device:data:anki:car:speed', alertUrn: 'urn:oracle:iot:device:event:anki:car:offtrack' }
 ];
 
-var car = new Device(ANKI);
+var car = new Device(ANKI, log);
 
 // Init Devices
 const delays = [10, 30, 60];

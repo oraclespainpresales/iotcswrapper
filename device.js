@@ -2,7 +2,8 @@ var method = Device.prototype;
 
 var _ = require('lodash');
 
-function Device(name) {
+function Device(name, log) {
+  this._log = log;
   // Initialize device (sub)structures
   this._device = {};
   this._device.iotcs = {};
@@ -29,6 +30,28 @@ method.setIotModel = function(model) {
 
 method.setIotVd = function(urn, model, vd) {
   this._device.virtualdevices.push({ urn: urn, model: model, device: vd });
+  vd.onError = function (tupple) {
+  	var errorMessage = tupple.errorResponse.toString();
+  	//handle error message
+  	this._log.error('IOTCS', "Error sending messages: " + errorMessage);
+  	//based on the error message, handle update of attributes or resent of the alerts
+  	setTimeout(function () {
+  		Object.keys(tupple.attributes).forEach(function (key) {
+  			//handle resend of alerts
+  			If (tupple.attributes[key].type === ‘ALERT’) {
+  				tupple.attributes[key].raise();
+  			}
+  			//handle resend of custom data messages
+  			else if (tupple.attributes[key].type === ‘DATA’) {
+  				tupple.attributes[key].submit();
+  			}
+  			//handle resend of attribute messages
+  			else {
+  				vd[key].value = tupple.tryValues[key];
+  			}
+  		}
+  	},  5*1000);
+  }
 }
 
 method.toString = function() {
