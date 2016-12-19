@@ -38,7 +38,7 @@ method.setIotVd = function(urn, model, vd) {
   	setTimeout(function () {
   		Object.keys(tupple.attributes).forEach(function (key) {
   			//handle resend of alerts
-  			If (tupple.attributes[key].type === "ALERT") {
+  			if (tupple.attributes[key].type === "ALERT") {
   				tupple.attributes[key].raise();
   			}
   			//handle resend of custom data messages
