@@ -49,7 +49,7 @@ method.setIotVd = function(urn, model, vd) {
   			else {
   				vd[key].value = tupple.tryValues[key];
   			}
-  		}
+  		})
   	},  5*1000);
   }
 }
