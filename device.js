@@ -9,6 +9,9 @@ function Device(name, log) {
   this._device.iotcs = {};
   this._device.name = name;
   this._device.virtualdevices = [];
+
+  this._log.error('IOTCS', "Device object created");
+
 }
 
 method.setStoreFile = function(storeFile, passphrase) {
