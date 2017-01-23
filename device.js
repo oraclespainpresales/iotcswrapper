@@ -10,7 +10,7 @@ function Device(name, log) {
   this._device.name = name;
   this._device.virtualdevices = [];
 
-  this._log.error('IOTCS', "Device object created");
+//  this._log.error('IOTCS', "Device object created");
 
 }
 
@@ -36,7 +36,8 @@ method.setIotVd = function(urn, model, vd) {
   vd.onError = function (tupple) {
   	var errorMessage = tupple.errorResponse.toString();
   	//handle error message
-  	this._log.error('IOTCS', "Error sending messages: " + errorMessage);
+//    this._log.error('IOTCS', "Error sending messages: " + errorMessage);
+    console.log('[IOTCS] ' + "Error sending messages: " + errorMessage);
   	//based on the error message, handle update of attributes or resent of the alerts
   	setTimeout(function () {
   		Object.keys(tupple.attributes).forEach(function (key) {
