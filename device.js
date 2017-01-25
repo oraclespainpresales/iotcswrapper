@@ -10,7 +10,7 @@ function Device(name, log) {
   this._device.name = name;
   this._device.virtualdevices = [];
 
-//  this._log.error('IOTCS', "Device object created");
+  this._log.error('IOTCS', "Device object created");
 
 }
 
