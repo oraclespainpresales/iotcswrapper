@@ -18,7 +18,7 @@ var async = require('async')
 
 // Misc BEGIN
 const PROCESSNAME = "Anki Overdrive demo - IoTCS Wrapper";
-const VERSION = "v1.0";
+const VERSION = "v1.1";
 const AUTHOR  = "Carlos Casares <carlos.casares@oracle.com>";
 const PROCESS = 'PROCESS';
 const IOTCS   = 'IOTCS';
@@ -34,7 +34,7 @@ var mainStatus = "STARTING";
 
 // Initializing IoTCS variables BEGIN
 dcl = dcl({debug: false});
-var storePassword = 'welcome1';
+var storePassword = 'Welcome1';
 var urn = [
      'urn:oracle:iot:device:data:anki:car:lap'
    , 'urn:oracle:iot:device:data:anki:car:speed'
@@ -120,10 +120,10 @@ async.waterfall([
       log.info(PROCESS, "Author - %s", AUTHOR);
       next(null);
     },
+/**
     async.apply(fs.readFile, storeFile, "utf8"),
-    async.asyncify(JSON.parse),
-    function (data, next) {
-      iotcsServer = data.serverHost + ":" + data.serverPort;
+    function (contents, next) {
+      iotcsServer = contents.split("\n")[2].split("//")[1];
       next(null);
     },
     function (next) {
@@ -148,6 +148,7 @@ async.waterfall([
         next(null);
       });
     },
+**/
     function(next) {
       // Sequentially, we initialize IoTCS and then the WS and REST servers
       async.series( {
