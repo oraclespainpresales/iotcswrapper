@@ -14,6 +14,8 @@ var async = require('async')
   , _ = require('lodash')
   , isReachable = require('is-reachable')
   , fs = require('fs')
+  , commandLineArgs = require('command-line-args')
+  , getUsage = require('command-line-usage')
 ;
 
 // Misc BEGIN
@@ -27,10 +29,71 @@ const QUEUE   = "QUEUE";
 const DATA    = "DATA";
 const ALERT   = "ALERT";
 const ANKI    = "Anki Car";
-log.level     ='verbose';
 log.timestamp = true;
 var mainStatus = "STARTING";
 // Misc END
+
+// Initialize input arguments
+const optionDefinitions = [
+  { name: 'device', alias: 'd', type: String },
+  { name: 'help', alias: 'h', type: Boolean },
+  { name: 'verbose', alias: 'v', type: Boolean, defaultOption: false }
+];
+
+const sections = [
+  {
+    header: 'IoT Racing - IoTCS Wrapper',
+    content: 'Wrapper to send racing events to IoTCS'
+  },
+  {
+    header: 'Options',
+    optionList: [
+      {
+        name: 'device',
+        typeLabel: '[underline]{file}',
+        alias: 'd',
+        type: String,
+        description: 'Device configuration file (.conf)'
+      },
+      {
+        name: 'verbose',
+        alias: 'v',
+        description: 'Enable verbose logging.'
+      },
+      {
+        name: 'help',
+        alias: 'h',
+        description: 'Print this usage guide.'
+      }
+    ]
+  }
+]
+var options = undefined;
+
+try {
+  options = commandLineArgs(optionDefinitions);
+} catch (e) {
+  console.log(getUsage(sections));
+  console.log(e.message);
+  process.exit(-1);
+}
+
+if (options.help) {
+  console.log(getUsage(sections));
+  process.exit(0);
+}
+
+if (!options.device) {
+  console.log(getUsage(sections));
+  process.exit(-1);
+}
+
+if (!fs.existsSync(options.device)) {
+  log.error("", "Device file %s does not exist or is not readable", options.device);
+  process.exit(-1);
+}
+
+log.level = (options.verbose) ? 'verbose' : 'info';
 
 // Initializing IoTCS variables BEGIN
 dcl = dcl({debug: false});
@@ -51,7 +114,7 @@ var car = new Device(ANKI, log);
 const delays = [10, 30, 60];
 const connectionTestRetries = delays.length + 1;
 var iotcsServer = "";
-const storeFile = process.argv[2];
+const storeFile = options.device;
 car.setStoreFile(storeFile, storePassword);
 car.setUrn(urn);
 var devices = [ car ];
