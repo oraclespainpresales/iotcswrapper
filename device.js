@@ -36,7 +36,8 @@ method.setIotVd = function(urn, model, vd) {
 //    this._log.error('IOTCS', "Error sending messages: " + errorMessage);
 //    this._log.verbose('IOTCS', "Pending messages: " + JSON.stringify(tupple));
     console.log("Error sending messages: " + errorMessage);
-    console.log("Pending messages: " + JSON.stringify(tupple));
+    console.log("Pending messages: ");
+    console.log(tupple);
 //    console.log('[IOTCS] ' + "Error sending messages: " + errorMessage);
   	//based on the error message, handle update of attributes or resent of the alerts
   	setTimeout(function () {
