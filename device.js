@@ -33,8 +33,9 @@ method.setIotVd = function(urn, model, vd) {
   vd.onError = function (tupple) {
   	var errorMessage = tupple.errorResponse.toString();
   	//handle error message
-//    this._log.error('IOTCS', "Error sending messages: " + errorMessage);
-    console.log('[IOTCS] ' + "Error sending messages: " + errorMessage);
+    this._log.error('IOTCS', "Error sending messages: " + errorMessage);
+    this._log.verbose('IOTCS', "Pending messages: " + JSON.stringify(tupple));
+//    console.log('[IOTCS] ' + "Error sending messages: " + errorMessage);
   	//based on the error message, handle update of attributes or resent of the alerts
   	setTimeout(function () {
   		Object.keys(tupple.attributes).forEach(function (key) {
