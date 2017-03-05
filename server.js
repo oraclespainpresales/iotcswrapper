@@ -297,7 +297,7 @@ async.waterfall([
               log.verbose(QUEUE, "Processing: %j", task);
               var vd = car.getIotVd(task.urn);
               if (vd) {
-                log.info(QUEUE, "Sending data");
+                log.verbose(QUEUE, "Sending data");
                 vd.update(task.data);
               } else {
                 log.error(QUEUE, "URN not registered: " + task.urn);
@@ -311,7 +311,7 @@ async.waterfall([
                   Object.keys(task.data).forEach(function(key) {
                     alert.fields[key] = task.data[key];
                   });
-                  log.info(QUEUE, "Sending alert");
+                  log.verbose(QUEUE, "Sending alert");
                   alert.raise();
                   log.verbose(IOTCS, "%s alert raised with data %j", task.urn, task.data);
                 } else {
