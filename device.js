@@ -2,6 +2,8 @@ var method = Device.prototype;
 
 var _ = require('lodash');
 
+var util = require=('util');
+
 function Device(name, log) {
   this._log = log;
   // Initialize device (sub)structures
@@ -37,7 +39,7 @@ method.setIotVd = function(urn, model, vd) {
 //    this._log.verbose('IOTCS', "Pending messages: " + JSON.stringify(tupple));
     console.log("Error sending messages: " + errorMessage);
     console.log("Pending messages: ");
-    console.log(tupple);
+    console.log(util.inspect(tupple, true, null));
 //    console.log('[IOTCS] ' + "Error sending messages: " + errorMessage);
   	//based on the error message, handle update of attributes or resent of the alerts
   	setTimeout(function () {
