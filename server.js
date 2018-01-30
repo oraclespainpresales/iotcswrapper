@@ -20,7 +20,7 @@ var async = require('async')
 
 // Misc BEGIN
 const PROCESSNAME = "Anki Overdrive demo - IoTCS Wrapper";
-const VERSION = "v1.1";
+const VERSION = "v2.0";
 const AUTHOR  = "Carlos Casares <carlos.casares@oracle.com>";
 const PROCESS = 'PROCESS';
 const IOTCS   = 'IOTCS';
