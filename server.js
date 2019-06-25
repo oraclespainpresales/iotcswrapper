@@ -16,7 +16,10 @@ var async = require('async')
   , fs = require('fs')
   , commandLineArgs = require('command-line-args')
   , getUsage = require('command-line-usage')
+//  , syswidecas = require('syswide-cas')
 ;
+
+//syswidecas.addCAs('/Users/ccasares/Desktop/iotserver');
 
 // Misc BEGIN
 const PROCESSNAME = "Anki Overdrive demo - IoTCS Wrapper";
@@ -32,6 +35,8 @@ const ANKI    = "Anki Car";
 log.timestamp = true;
 var mainStatus = "STARTING";
 // Misc END
+
+process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
 
 // Initialize input arguments
 const optionDefinitions = [
