@@ -2,3 +2,4 @@ node_modules
 *AAA*.json
 *.conf
 device-library.node.js
+package-lock.json
