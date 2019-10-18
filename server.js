@@ -103,7 +103,7 @@ log.level = (options.verbose) ? 'verbose' : 'info';
 
 // Initializing IoTCS variables BEGIN
 dcl = dcl({debug: false});
-dcl.oracle.iot.client.device.requestBufferSize = 7618;
+dcl.oracle.iot.client.device.requestBufferSize = 10240;
 
 var storePassword = 'Welcome1';
 var urn = [
