@@ -103,6 +103,8 @@ log.level = (options.verbose) ? 'verbose' : 'info';
 
 // Initializing IoTCS variables BEGIN
 dcl = dcl({debug: false});
+iotcs.oracle.iot.client.device.requestBufferSize = 7618;
+
 var storePassword = 'Welcome1';
 var urn = [
      'urn:oracle:iot:device:data:anki:car:lap'
